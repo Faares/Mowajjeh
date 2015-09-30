@@ -35,14 +35,13 @@ Class Mowajjeh {
 	}
 
 	protected function addRoute($method,$patt,$vars,$processor){
-
 		$this->Routers[strtoupper($method)][] = ['patt'=>$patt,'proc'=>$processor,'vars'=>$vars];
-	
 	}
 
 	public function setNotFound($callback){
 		$this->notFound = $callback;
 	}
+
 	public function run($callback = null){
 		$this->method = $this->getMethod();
 
@@ -120,11 +119,8 @@ Class Mowajjeh {
 
 
 	protected function procPatt($patt,$vars){
-
 		$count = 0;
-
 		foreach (explode("/",$patt) as $elm) {
-
 			# check if have [:xx] in patt
 			if(preg_match_all("/^:[a-z]*$/",$elm,$out)){
 
@@ -137,7 +133,6 @@ Class Mowajjeh {
 				# [xx=>count] // mean [xx] var is in [count] element of URI
 				# why do this ?
 				# for get vars value see getVarsValues() function
-
 				$this->varsKey[$key] = $count; 
 			}
 			$count++;
@@ -147,17 +142,12 @@ Class Mowajjeh {
 
 
 	protected function getVarsValues(){
-
 		$Req = explode("/",rtrim($_SERVER['REQUEST_URI'],"/"));
-
-
 		foreach ($this->varsKey as $key => $val) {
 			$this->vars[$key] = $Req[$val];
 		}
-
 		return $this->vars;
 	}
-
 
 	protected function getMethod(){
 		return strtoupper($_SERVER['REQUEST_METHOD']);
