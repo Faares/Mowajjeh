@@ -1,6 +1,6 @@
 <?php
 
-Class Router {
+Class Mowajjeh {
 
 
 	protected $Routers;
@@ -89,29 +89,25 @@ Class Router {
 
 			# now match!
 			if(preg_match('#^' . $patt . '$#', $uri)){
-					# get vars
-					$this->getVarsValues();
+				# get vars
+				$this->getVarsValues();
 
-					if(is_callable($proc)){
+				if(is_callable($proc)){
 
-						if($vars != false)
-							#get Call back with vars!
-							call_user_func_array($proc,array_values($this->vars));
-						else
-							#no vars ? ok , get function only!
-							call_user_func($proc);
+					if($vars != false)
+						#get Call back with vars!
+						call_user_func_array($proc,array_values($this->vars));
+					else
+						#no vars ? ok , get function only!
+						call_user_func($proc);
 
-					}else{
-						if($vars != false)
-							extract($this->vars);
-						
-						# get File!
-						include $proc;
-					}
-
-			}
-				
-
+				}else{
+					if($vars != false)
+						extract($this->vars);
+					
+					# get File!
+					include $proc;
+				}
 				break;
 			}
 			$this->varsKey = [];
