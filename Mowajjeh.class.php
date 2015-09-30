@@ -113,7 +113,6 @@ Class Mowajjeh {
 			$this->varsKey = [];
 
 			$num--;
-
 		}
 		
 		return $num;
