@@ -122,7 +122,7 @@ Class Mowajjeh {
 		$count = 0;
 		foreach (explode("/",$patt) as $elm) {
 			# check if have [:xx] in patt
-			if(preg_match_all("/^:[a-z]*$/",$elm,$out)){
+			if(preg_match_all("/^:[a-z_]*$/",$elm,$out)){
 
 				# cut [:]
 				$key = substr($out[0][0],1);
