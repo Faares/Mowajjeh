@@ -1,5 +1,5 @@
 <?php
 
-include "mowajjeh.php";
+#config
 
-die;
+include "mowajjeh.php";
