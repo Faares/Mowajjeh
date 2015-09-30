@@ -2,7 +2,6 @@
 
 Class Mowajjeh {
 
-
 	protected $Routers;
 
 	protected $vars;
@@ -12,7 +11,6 @@ Class Mowajjeh {
 	protected $method;
 
 	protected $notFound;
-
 
 	function __construct(){
 
