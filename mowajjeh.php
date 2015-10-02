@@ -4,7 +4,7 @@
 */
 
 
-include "Mowajjeh.class.php"
+include "Mowajjeh.class.php";
 
 $mow = new Mowajjeh();
 
