@@ -9,8 +9,8 @@ include "Mowajjeh.class.php";
 $mow = new Mowajjeh();
 
 #callback
-$mow->get("/test",function(){
-	echo 'test';
+$mow->get("/plaplapla/:pla",['pla'=>"[a-z]*"],function($pla){
+	echo "Hello I'm {$pla}";
 });
 
 # file!
