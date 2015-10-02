@@ -4,13 +4,13 @@
 */
 
 
-include "Mowajjeh.class.php"
+include "Mowajjeh.class.php";
 
 $mow = new Mowajjeh();
 
 #callback
-$mow->get("/plaplapla/:pla",['pla'=>"[a-z]*"],function($pla){
-	echo "Hello I'm {$pla}";
+$mow->get("/test",function(){
+	echo 'test';
 });
 
 # file!
