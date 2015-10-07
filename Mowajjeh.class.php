@@ -17,19 +17,19 @@ Class Mowajjeh {
 	}
 
 	public function get($patt,$vars = false,$processor){
-		$this->addRoute("GET",$patt,$vars,$processor);
+		$this->addRoute('GET',$patt,$vars,$processor);
 	}
 
 	public function post($patt,$vars = false,$processor){
-		$this->addRoute("POST",$patt,$vars,$processor);
+		$this->addRoute('POST',$patt,$vars,$processor);
 	}
 
 	public function put($patt,$vars = false,$processor){
-		$this->addRoute("PUT",$patt,$vars,$processor);
+		$this->addRoute('PUT',$patt,$vars,$processor);
 	}
 
 	public function del($patt,$vars = false,$processor){
-		$this->addRoute("DELETE",$patt,$vars,$processor);
+		$this->addRoute('DELETE',$patt,$vars,$processor);
 	}
 
 	protected function addRoute($method,$patt,$vars,$processor){
@@ -45,12 +45,12 @@ Class Mowajjeh {
 
 		$count = 0;
 
-		if(isset($this->Routers[$this->method])){
-			$count = $this->match($this->Routers[$this->method]);
-		}else{
+		if(!isset($this->Routers[$this->method])){
 			return false;
 		}
-
+		
+		$count = $this->match($this->Routers[$this->method]);
+		
 		if($count === 0){
 			if($this->notFound && is_callable($this->notFound)){
 				call_user_func($this->notFound);
@@ -65,14 +65,13 @@ Class Mowajjeh {
 			}
 			return true;
 		}
-		return false;
 	}
 
 	protected function match($routers){
 
 		$num = count($routers);
 
-		$uri = rtrim($_SERVER['REQUEST_URI'],"/");
+		$uri = rtrim($_SERVER['REQUEST_URI'],'/');
 
 		foreach ($routers as $route) {
 
@@ -118,9 +117,9 @@ Class Mowajjeh {
 
 	protected function procPatt($patt,$vars){
 		$count = 0;
-		foreach (explode("/",$patt) as $elm) {
+		foreach (explode('/',$patt) as $elm) {
 			# check if have [:xx] in patt
-			if(preg_match_all("/^:[a-z_]*$/",$elm,$out)){
+			if(preg_match_all('/^:[a-z_]*$/',$elm,$out)){
 
 				# cut [:]
 				$key = substr($out[0][0],1);
@@ -140,7 +139,7 @@ Class Mowajjeh {
 
 
 	protected function getVarsValues(){
-		$Req = explode("/",rtrim($_SERVER['REQUEST_URI'],"/"));
+		$Req = explode('/',rtrim($_SERVER['REQUEST_URI'],'/'));
 		foreach ($this->varsKey as $key => $val) {
 			$this->vars[$key] = $Req[$val];
 		}
