@@ -7,6 +7,14 @@ simple PHP router
 include "Mowajjeh.class.php";
 $mow = new Mowajjeh();
 
+$mow->get("/",null,function(){
+	echo "index page";
+});
+
+$mow->get("/about",null,function(){
+	echo "about page";
+});
+
 # callback
 $mow->get("/hello/:user",['user'=>"[a-z]*"],function($user){
 	echo "Hello I'm {$user}";
