@@ -15,12 +15,12 @@ $mow->get("/plaplapla/:pla",['pla'=>'value'],function($pla){
 
 $mow->general('/books',function() use($mow){
 
-	// URI WILL BE : http://example.com/book/
+	// URI WILL BE : http://example.com/books/
 	$mow->get('/',null,function(){
 		echo "I'm index page of book section .";
 	});
 
-	// URI WILL BE : http://example.com/book/add
+	// URI WILL BE : http://example.com/books/add
 	$mow->get('/add',null,function(){
 		echo "I'm add new books page .";
 	});
