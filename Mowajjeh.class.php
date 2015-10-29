@@ -2,6 +2,8 @@
 
 Class Mowajjeh {
 
+	public $baseRoute = '';
+
 	protected $Routers;
 
 	protected $vars;
@@ -33,7 +35,8 @@ Class Mowajjeh {
 	}
 
 	protected function addRoute($method,$patt,$vars,$processor){
-		$this->Routers[strtoupper($method)][] = ['patt'=>$patt,'proc'=>$processor,'vars'=>$vars];
+		$patt = rtrim($patt,'/');
+		$this->Routers[strtoupper($method)][] = ['patt'=>$this->baseRoute.$patt,'proc'=>$processor,'vars'=>$vars];
 	}
 
 	public function setNotFound($callback){
@@ -73,6 +76,9 @@ Class Mowajjeh {
 
 		$uri = rtrim($_SERVER['REQUEST_URI'],'/');
 
+		if(!empty($_SERVER['QUERY_STRING']))
+			$uri = rtrim(substr($uri,0,stripos($uri,"?")),'/');
+
 		foreach ($routers as $route) {
 
 			$patt = $route['patt'];
@@ -93,6 +99,7 @@ Class Mowajjeh {
 					if($vars != false)
 						#get Call back with vars!
 						call_user_func_array($proc,array_values($this->vars));
+
 					else
 						#no vars ? ok , get function only!
 						call_user_func($proc);
@@ -119,8 +126,7 @@ Class Mowajjeh {
 		$count = 0;
 		foreach (explode('/',$patt) as $elm) {
 			# check if have [:xx] in patt
-			if(preg_match_all('/^:[a-z_]*$/',$elm,$out)){
-
+			if(preg_match_all('/^:(.*)*$/',$elm,$out)){
 				# cut [:]
 				$key = substr($out[0][0],1);
 
@@ -139,6 +145,9 @@ Class Mowajjeh {
 
 
 	protected function getVarsValues(){
+		if(empty($this->varsKey))
+			return false;
+
 		$Req = explode('/',rtrim($_SERVER['REQUEST_URI'],'/'));
 		foreach ($this->varsKey as $key => $val) {
 			$this->vars[$key] = $Req[$val];
@@ -150,4 +159,15 @@ Class Mowajjeh {
 		return strtoupper($_SERVER['REQUEST_METHOD']);
 	}
 
+	public function general($baseroute,$callback){
+
+		$curBase = $this->baseRoute;
+
+		$this->baseRoute .= rtrim($baseroute,'/');
+
+		call_user_func($callback);
+
+		$this->baseRoute = $curBase;
+
+	}
 }

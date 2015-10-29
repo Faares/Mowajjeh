@@ -9,8 +9,22 @@ include "Mowajjeh.class.php";
 $mow = new Mowajjeh();
 
 #callback
-$mow->get("/plaplapla/:pla",['pla'=>"[a-z]*"],function($pla){
+$mow->get("/plaplapla/:pla",['pla'=>'value'],function($pla){
 	echo "Hello I'm {$pla}";
+});
+
+$mow->general('/books',function() use($mow){
+
+	// URI WILL BE : http://example.com/book/
+	$mow->get('/',null,function(){
+		echo "I'm index page of book section .";
+	});
+
+	// URI WILL BE : http://example.com/book/add
+	$mow->get('/add',null,function(){
+		echo "I'm add new books page .";
+	});
+
 });
 
 # file!
