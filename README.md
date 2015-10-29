@@ -27,4 +27,18 @@ $mow->get("/hello/:user",['user'=>"[a-z]*"],__DIR__."example.php");
 $mow->post("/api/get_data/:type",['type'=>"[a-z]*"],function($type){
 	return $type;
 });
+
+$mow->general('/books',function() use($mow){
+
+	// URI WILL BE : http://example.com/books/
+	$mow->get('/',null,function(){
+		echo "I'm index page of book section .";
+	});
+
+	// URI WILL BE : http://example.com/books/add
+	$mow->get('/add',null,function(){
+		echo "I'm add new books page .";
+	});
+
+});
 ```
