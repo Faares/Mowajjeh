@@ -1,5 +1,19 @@
 # Mowajjeh
 simple PHP router
+
+# Installation
+
+1. Include the class on your project.
+2. Make sure to add these lines to your `.htaccess` :
+	```htaccess
+	RewriteEngine On
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php [L,QSA]
+	```
+3. Follow the usage section bellow!
+
+
 # Usage
 
 ```php
@@ -41,5 +55,10 @@ $mow->general('/books',function() use($mow){
 		echo "I'm add new books page .";
 	});
 
+});
+
+# RUN , want callback after end ? ok , just write your code!
+$mow->run(function(){
+	print "END OF APP!";
 });
 ```
