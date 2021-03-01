@@ -1,7 +1,7 @@
 # Mowajjeh
 simple PHP router.
 
-# Usage
+## Usage
 
 1. Include the class on your project.
 2. Make sure to add these lines to your `.htaccess` :
@@ -60,3 +60,6 @@ $mow->run(function(){
 	print "END OF APP!";
 });
 ```
+
+## Disclaimer
+I don't recommend using this script in production, I developed it when I was young and a beginner so it could be vulnerable.
