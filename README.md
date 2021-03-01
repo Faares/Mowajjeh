@@ -1,5 +1,5 @@
 # Mowajjeh
-simple PHP router
+simple PHP router.
 
 # Installation
 
@@ -35,7 +35,7 @@ $mow->get("/hello/:user",['user'=>"[a-z]*"],function($user){
 	echo "Hello I'm {$user}";
 });
 
-# include File , all vars will pass to the file.
+# include file , all vars will pass to it.
 $mow->get("/hello/:user",['user'=>"[a-z]*"],__DIR__."example.php");
 
 # post
