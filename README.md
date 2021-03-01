@@ -1,6 +1,7 @@
 # Mowajjeh
 simple PHP router
-# الاستخدام
+# Usage
+
 ```php
 <?php
 
