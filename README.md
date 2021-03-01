@@ -3,8 +3,9 @@ simple PHP router.
 
 ## Usage
 
-1. Include the class on your project.
-2. Make sure to add these lines to your `.htaccess` :
+1. Download the class file `Mowajjeh.class.php`.
+2. Include the class in your project.
+3. Make sure to add these lines to your `.htaccess` :
 	```htaccess
 	RewriteEngine On
 	RewriteCond %{REQUEST_FILENAME} !-f
