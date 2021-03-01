@@ -1,7 +1,7 @@
 # Mowajjeh
 simple PHP router.
 
-# Installation
+# Usage
 
 1. Include the class on your project.
 2. Make sure to add these lines to your `.htaccess` :
@@ -11,10 +11,8 @@ simple PHP router.
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule ^(.*)$ index.php [L,QSA]
 	```
-3. Follow the usage section bellow!
+3. Follow the example bellow:
 
-
-# Usage
 
 ```php
 <?php
